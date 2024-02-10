@@ -50,7 +50,7 @@ set_target_properties(spice PROPERTIES C_STANDARD 90)
 target_include_directories(
     spice 
     PUBLIC 
-        $<BUILD_INTERFACE:${INCLUDE_PATH}>
+        "$<BUILD_INTERFACE:${INCLUDE_PATH}>" # Quotes needed here, because is a list
 )
 
 if (WIN32)
