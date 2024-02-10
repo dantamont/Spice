@@ -47,7 +47,11 @@ else ()
 endif ()
 set_target_properties(spice PROPERTIES POSITION_INDEPENDENT_CODE 1)
 set_target_properties(spice PROPERTIES C_STANDARD 90)
-target_include_directories(spice PUBLIC "${INCLUDE_PATH}")
+target_include_directories(
+    spice 
+    PUBLIC 
+        $<BUILD_INTERFACE:"${INCLUDE_PATH}">
+)
 
 if (WIN32)
   # Our compile definitions on Windows
@@ -85,3 +89,12 @@ if (WIN32)
     [["SpiceZmc.h"]]
   )
 endif ()
+
+target_sources(${TARGET_NAME}
+    PUBLIC
+        FILE_SET installed_headers
+        TYPE HEADERS
+        BASE_DIRS 
+            include
+        FILES include/SpiceUsr.h
+)
