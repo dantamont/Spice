@@ -90,7 +90,7 @@ if (WIN32)
   )
 endif ()
 
-target_sources(${TARGET_NAME}
+target_sources(spice
     PUBLIC
         FILE_SET installed_headers
         TYPE HEADERS
